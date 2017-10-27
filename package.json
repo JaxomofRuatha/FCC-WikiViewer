@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "emotion": "^8.0.9",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14"
@@ -26,6 +27,8 @@
     "eslint-plugin-react": "^7.4.0",
     "gulp": "^3.9.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.1.0",
+    "prop-types": "^15.6.0",
+    "react-test-renderer": "^16.0.0"
   }
 }
