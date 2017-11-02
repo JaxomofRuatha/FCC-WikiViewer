@@ -9,13 +9,28 @@ const apiOpts = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      searchQuery: 'Testing'
+    };
+  }
+
+  componentDidMount() {
+    this._wikiQuery();
   }
 
   _wikiQuery = () => {
-    const url = 'https://en.wikipedia.org/w/api.php?format=json&action=query';
+    const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts%7Cpageimages&explaintext=1&generator=search&exsentences=3&exlimit=20&exintro=1&piprop=thumbnail%7Cname&gsrsearch=${this
+      .state.searchQuery}&gsrnamespace=*&gsrlimit=10`;
 
-    apiSkeleton(url, )
+    apiSkeleton(url, apiOpts, this._onQuerySuccess, this._onQueryFail);
+  };
+
+  _onQuerySuccess = (res) => {
+    console.log(res);
+  };
+
+  _onQueryFail = (err) => {
+    throw err;
   };
 
   render() {
