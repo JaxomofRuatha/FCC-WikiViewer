@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import apiSkeleton from './utils/api-helpers';
 
-import ArticleItem from './components/ArticleItem';
-
-const apiOpts = {
-  method: 'POST'
-};
+import ArticleItem from './view/components/ArticleItem';
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +50,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <img src={this.state.articles[0].thumbnail} />
-// <h1>{this.state.articles[0].titles}</h1>
-// <p>{this.state.articles[0].source}</p>

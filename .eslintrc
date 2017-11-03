@@ -4,15 +4,16 @@
     "env": {
         "browser": true,
         "node": true,
-        "mocha": true
+        "jest": true
     },
     "plugins": [
         "react",
-        "import"
+        "import",
+        "immutable"
     ],
     "rules": {
         "max-len": [
-            0,
+            1,
             {
                 "ignoreUrls": true
             }
@@ -34,9 +35,14 @@
             1,
             "consistent"
         ],
-        "no-underscore-dangle": [
-            0
-        ],
-        "no-plusplus": [0]
+        "no-underscore-dangle": [0],
+        "no-plusplus": [0],
+        "no-use-before-define": [0],
+        "no-var": [1],
+        "no-undef": [2],
+        "no-param-reassign": [1],
+        "immutable/no-let": 2,
+        "immutable/no-this": 2,
+        "immutable/no-mutation": 2
     }
 }
