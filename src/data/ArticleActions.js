@@ -14,24 +14,17 @@ export function queryWiki(query) {
   apiSkeleton(url, apiOpts, _onQuerySuccess, _onQueryFail);
 
   function _onQuerySuccess(res) {
-    const pages = res.query.pages;
+    const { pages } = res.query;
 
     dispatcher.dispatch({
       type: 'RECEIVE_WIKI',
       pages
     });
-    console.log('Reached query success!', pages);
   }
 
   function _onQueryFail(err) {
     throw err;
   }
-}
-
-export function fetchingWiki() {
-  dispatcher.dispatch({
-    type: 'FETCHING_WIKI'
-  });
 }
 
 export function randomWiki() {

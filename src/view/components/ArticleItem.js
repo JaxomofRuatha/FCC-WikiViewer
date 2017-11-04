@@ -1,7 +1,12 @@
 import React from 'react';
 
 const ArticleItem = props => (
-  <span>Dis is a Wikipedia article.</span>
+  <div>
+    <span>{props.articles.id}</span>
+    <span>{props.articles.title}</span>
+    <span>{props.articles.extract}</span>
+    <img src={props.articles.thumbnail} />
+  </div>
 );
 
 export default ArticleItem;

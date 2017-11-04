@@ -1,27 +1,39 @@
-import { EventEmitter } from 'events';
+import { ReduceStore } from 'flux/utils';
+import { Map } from 'immutable';
 
 import dispatcher from '../../utils/dispatcher';
 
-class ArticleStore extends EventEmitter {
+class ArticleStore extends ReduceStore {
   constructor() {
-    super();
-    // Should store objects rendered elsewhere as the currently visible extracts.
-    this.articles = [];
-    this.fetching = false;
+    super(dispatcher);
   }
 
-  _handleActions(state, action) {
+  getInitialState() {
+    return Map({
+      // Should store objects rendered elsewhere as the currently visible extracts.
+      articles: [],
+      fetching: false
+    });
+  }
+
+  reduce(state, action) {
     switch (action.type) {
       case 'QUERY_WIKI': {
-        state.fetching = true;
+        return state.set('fetching', true);
       }
-
-      default: return state;
+      case 'RECEIVE_WIKI': {
+        const newArticles = action.pages.map(page => ({
+          id: page.pageid,
+          title: page.title,
+          extract: page.extract,
+          thumbnail: page.thumbnail.source
+        }));
+        return state.set('articles', newArticles);
+      }
+      default:
+        return state;
     }
   }
 }
 
-const articleStore = new ArticleStore();
-dispatcher.register(articleStore._handleActions.bind(articleStore));
-
-export default articleStore;
+export default new ArticleStore();

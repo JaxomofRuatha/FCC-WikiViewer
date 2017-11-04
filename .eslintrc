@@ -13,18 +13,9 @@
     ],
     "rules": {
         "max-len": [
-            1,
+            0,
             {
                 "ignoreUrls": true
-            }
-        ],
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
             }
         ],
         "comma-dangle": [
@@ -41,8 +32,18 @@
         "no-var": [1],
         "no-undef": [2],
         "no-param-reassign": [1],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "react/jsx-no-bind": 1, 
         "immutable/no-let": 2,
-        "immutable/no-this": 2,
+        // "immutable/no-this": 2,
         "immutable/no-mutation": 2
     }
 }
