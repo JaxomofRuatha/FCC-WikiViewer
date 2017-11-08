@@ -1,21 +1,28 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { lifecycle } from 'recompose';
+import { compose, lifecycle } from 'recompose';
+import { connect } from 'react-redux';
 
-import { queryWiki } from './data/ArticleActions';
-import articleStore from './data/stores/ArticleStore';
+import ArticleItem from './components/ArticleItem';
 
-import ArticleItem from './view/components/ArticleItem';
+const defaultArticles = {
+  id: 1,
+  title: 'stuff',
+  extract: 'content stuff',
+  thumbnail: 'link pic'
+};
 
-const currentArticles = articleStore.getState().articles;
-console.log(articleStore.getState());
-
-const App = props => (
-  <ArticleItem articles={currentArticles[0]} />
+const enhance = compose(
+  lifecycle({
+    componentDidMount() {
+      console.log('Exists');
+    }
+  }),
+  connect()
 );
 
-export default lifecycle({
-  componentDidMount() {
-    queryWiki('Testing');
-  }
-})(App);
+const App = props => (
+  <ArticleItem articles={defaultArticles} />
+);
+
+export default enhance(App);

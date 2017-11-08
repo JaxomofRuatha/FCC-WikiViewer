@@ -1,4 +1,3 @@
-import dispatcher from '../utils/dispatcher';
 import apiSkeleton from '../utils/api-helpers';
 
 export function queryWiki(query) {
