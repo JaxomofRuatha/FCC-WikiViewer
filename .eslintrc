@@ -19,7 +19,7 @@
             }
         ],
         "comma-dangle": [
-            "error",
+            2,
             "only-multiline"
         ],
         "quote-props": [

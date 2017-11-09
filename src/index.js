@@ -1,15 +1,14 @@
 import React from 'react';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import createHistory from 'history/createHashHistory';
+import createHistory from 'history/createBrowserHistory';
 import {
   ConnectedRouter,
   routerReducer,
-  routerMiddleware,
-  push
+  routerMiddleware
 } from 'react-router-redux';
 import ReactDOM from 'react-dom';
-//import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
 
 import './css/style.css';
 import App from './App';
@@ -22,7 +21,8 @@ const store = createStore(
     ...reducers,
     router: routerReducer
   }),
-  applyMiddleware(routerMiddleware(history))
+  applyMiddleware(routerMiddleware(history), thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(

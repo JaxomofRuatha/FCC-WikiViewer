@@ -1,10 +1,17 @@
-function reduce(state, action) {
-  console.log('in reduce');
+import { Map } from 'immutable';
+
+const initialState = Map({
+  // Should store objects rendered elsewhere as the currently visible extracts.
+  articles: {},
+  fetching: false
+});
+
+function reduce(state = initialState, action) {
   switch (action.type) {
-    case 'QUERY_WIKI': {
+    case 'REQUEST_ARTICLES': {
       return state.set('fetching', true);
     }
-    case 'RECEIVE_WIKI': {
+    case 'RECEIVE_ARTICLES': {
       const newArticles = action.pages.map(page => ({
         id: page.pageid,
         title: page.title,
