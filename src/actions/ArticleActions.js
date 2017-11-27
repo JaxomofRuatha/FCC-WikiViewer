@@ -1,17 +1,17 @@
-import apiSkeleton from '../../utils/api-helpers';
+import apiSkeleton from '../utils/api-helpers';
+import types from './constants';
 
 function requestArticles(query) {
   return {
-    type: 'REQUEST_ARTICLES',
+    type: types.REQUEST_ARTICLES,
     query
   };
 }
 
 function receiveArticles(pages) {
   return {
-    type: 'RECEIVE_ARTICLES',
-    articles: Object.keys(pages).map((page, index) => {
-      console.log(pages, index);
+    type: types.RECEIVE_ARTICLES,
+    articles: Object.keys(pages).map((page) => {
       return ({
         id: pages[page].pageid,
         title: pages[page].title,
@@ -22,7 +22,7 @@ function receiveArticles(pages) {
   };
 }
 
-export function queryWiki(query) {
+export default function queryWiki(query) {
   return (dispatch) => {
     const apiOpts = {
       method: 'POST'
