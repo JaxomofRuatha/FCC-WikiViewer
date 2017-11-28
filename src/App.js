@@ -5,16 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ArticleItem from './components/ArticleItem';
-import { queryWiki } from './data/actions/ArticleActions';
+import { queryWiki } from './actions/ArticleActions';
 
-const App = props => <ArticleItem articles={props.queryWiki('Testing')} />;
+const App = () => <ArticleItem articles={props.queryWiki('Testing')} />;
 
-function mapStateToProps(state) {
-  return {
-    articles: state.articles,
-    fetching: state.fetching
-  };
-}
+const mapStateToProps = state => state.articleReducer;
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
