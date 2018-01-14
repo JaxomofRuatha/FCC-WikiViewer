@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ArticleItem from './components/ArticleItem';
-import { queryWiki } from './actions/ArticleActions';
 
 const App = () => <ArticleItem articles={props.queryWiki('Testing')} />;
 

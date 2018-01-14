@@ -31,8 +31,8 @@ function timedRequest(ms, promise) {
 }
 
 function apiSkeleton(url, options, onRequestSuccess, onRequestFail) {
-  if (!url) onRequestFail(new Error('Request url is a required field'));
-  if (!options) onRequestFail(new Error('Request options is a required field'));
+  if (!url) onRequestFail(new Error('Request url is a required argument'));
+  if (!options) { onRequestFail(new Error('Request options is a required argument')); }
   const reqOptions = {
     mode: 'cors',
     ...options

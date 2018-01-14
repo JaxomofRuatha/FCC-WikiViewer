@@ -1,6 +1,20 @@
-import apiSkeleton from '../utils/api-helpers';
 import types from './constants';
 
+export function requestArticles(query) {
+  return {
+    type: types.REQUEST_ARTICLES,
+    query
+  };
+}
+
+export function receiveArticles(res) {
+  return {
+    type: types.RECEIVE_ARTICLES,
+    res
+  };
+}
+
+/*
 function requestArticles(query) {
   return {
     type: types.REQUEST_ARTICLES,
@@ -44,7 +58,6 @@ export default function queryWiki(query) {
   };
 }
 
-/*
 export function randomWiki() {
   dispatcher.dispatch({
     type: 'RANDOM_WIKI'
