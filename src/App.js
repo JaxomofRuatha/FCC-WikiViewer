@@ -4,26 +4,33 @@ import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import ArticleItem from './components/ArticleItem';
+import {
+  requestArticles,
+  receiveArticles
+} from './store/actions/ArticleActions';
+import getSearches from './store/selectors';
 
-const App = () => <ArticleItem articles={props.queryWiki('Testing')} />;
+const App = () => <div className="app-root" />;
 
-const mapStateToProps = state => state.articleReducer;
+// Adds state as a prop to avoid having components directly reference store.
+const mapStateToProps = state => ({
+  searches: getSearches(state.articleReducer)
+});
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
+// Adds action creators as props to avoid having components directly reference store.
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
     {
-      queryWiki
-      // randomWiki
+      requestArticles,
+      receiveArticles
     },
     dispatch
   );
-}
 
 const enhance = compose(
   lifecycle({
     componentDidMount() {
-      console.log('Exists');
+      console.log(this.props);
     }
   }),
   connect(mapStateToProps, mapDispatchToProps)

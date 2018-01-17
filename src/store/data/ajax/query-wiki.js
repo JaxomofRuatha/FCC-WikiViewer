@@ -1,10 +1,10 @@
-import apiSkeleton from './api-helpers';
+import apiSkeleton from '../../../utils/api-helpers';
 
 const apiOpts = {
   method: 'POST'
 };
 
-const onSuccess = res => res.json();
+const onSuccess = res => res.query.pages;
 
 const onFail = (err) => {
   throw err;

@@ -1,28 +1,29 @@
-import { Map } from 'immutable';
+import { fromJS } from 'immutable';
+import { normalize } from 'normalizr';
 
-const initialState = Map({
-  // Should store objects rendered elsewhere as the currently visible extracts.
-  articles: {},
+import types from '../actions/constants';
+import schema from '../data/schema';
+
+const initialState = fromJS({
+  searches: [],
   fetching: false
 });
 
-function reduce(state = initialState, action) {
+const articleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'REQUEST_ARTICLES': {
+    case types.REQUEST_ARTICLES: {
       return state.set('fetching', true);
     }
-    case 'RECEIVE_ARTICLES': {
-      const newArticles = action.pages.map(page => ({
-        id: page.pageid,
-        title: page.title,
-        extract: page.extract,
-        thumbnail: page.thumbnail.source
-      }));
-      return state.set('articles', newArticles);
+    case types.RECEIVE_ARTICLES: {
+      const data = action.res;
+      return state.withMutations((store) => {
+        store.set('fetching', false);
+        store.updateIn(['searches'], searches => searches.push(data));
+      });
     }
     default:
       return state;
   }
-}
+};
 
-export default reduce;
+export default articleReducer;
