@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch =>
 const enhance = compose(
   lifecycle({
     componentDidMount() {
-      queryWiki('Uganda');
+      console.log('React component mounted!');
     }
   }),
   connect(mapStateToProps, mapDispatchToProps)

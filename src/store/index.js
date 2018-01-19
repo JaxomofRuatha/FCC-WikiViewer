@@ -12,8 +12,8 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = applyMiddleware(
-  routerMiddleware(history),
   sagaMiddleware,
+  routerMiddleware(history),
   logger
 );
 

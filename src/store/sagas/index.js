@@ -7,6 +7,7 @@ import { receiveArticles } from '../actions/ArticleActions';
 
 function* articlesWorker({ query }) {
   try {
+    yield call(delay, 100);
     const res = yield call(queryWiki, query);
     yield put(receiveArticles(res));
   } catch (err) {

@@ -30,21 +30,44 @@ function timedRequest(ms, promise) {
   });
 }
 
-function apiSkeleton(url, options, onRequestSuccess, onRequestFail) {
+function apiSkeleton(url, options) {
+  return new Promise((resolve, reject) => {
+    if (!url) reject(new Error('Request url is a required field'));
+    if (!options) reject(new Error('Request options is a required field'));
+    const reqOptions = {
+      mode: 'cors',
+      ...options
+    };
+    timedRequest(REQUEST_TIMEOUT_MS, fetch(url, reqOptions))
+      .then(_checkStatus)
+      .then(resolve)
+      .catch((error) => {
+        console.warn(error);
+        reject(error);
+      });
+  });
+}
+
+/* async function apiSkeleton(url, options, onRequestSuccess, onRequestFail) {
   if (!url) onRequestFail(new Error('Request url is a required argument'));
-  if (!options) { onRequestFail(new Error('Request options is a required argument')); }
+  if (!options) {
+    onRequestFail(new Error('Request options is a required argument'));
+  }
   const reqOptions = {
     mode: 'cors',
     ...options
   };
-  timedRequest(REQUEST_TIMEOUT_MS, fetch(url, reqOptions))
+  const result = await timedRequest(REQUEST_TIMEOUT_MS, fetch(url, reqOptions))
     .then(_checkStatus)
     .then((res) => {
       onRequestSuccess(res);
     })
-    .catch((error) => {
-      onRequestFail(error);
+    .catch((err) => {
+      onRequestFail(err);
     });
-}
+
+  console.log('In API skeleton', result);
+  return result;
+} */
 
 export default apiSkeleton;
