@@ -9,6 +9,7 @@ import {
   receiveArticles
 } from './store/actions/ArticleActions';
 import getSearches from './store/selectors';
+import queryWiki from './store/data/ajax';
 
 const App = () => <div className="app-root" />;
 
@@ -30,7 +31,7 @@ const mapDispatchToProps = dispatch =>
 const enhance = compose(
   lifecycle({
     componentDidMount() {
-      console.log(this.props);
+      queryWiki('Uganda');
     }
   }),
   connect(mapStateToProps, mapDispatchToProps)

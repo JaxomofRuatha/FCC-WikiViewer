@@ -5,7 +5,7 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 
 import reducer from './reducers';
-import fetchArticles from './sagas';
+import rootSaga from './sagas';
 
 export const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
@@ -19,6 +19,6 @@ const middleware = applyMiddleware(
 
 const store = createStore(reducer, composeEnhancers(middleware));
 
-sagaMiddleware.run(fetchArticles);
+sagaMiddleware.run(rootSaga);
 
 export default store;

@@ -8,6 +8,7 @@ export function requestArticles(query) {
 }
 
 export function receiveArticles(res) {
+  console.log(res);
   return {
     type: types.RECEIVE_ARTICLES,
     res

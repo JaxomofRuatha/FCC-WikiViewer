@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 
 import types from '../actions/constants';
 import queryWiki from '../data/ajax';
@@ -7,12 +7,10 @@ import { receiveArticles } from '../actions/ArticleActions';
 
 function* articlesWorker({ query }) {
   try {
-    yield call(delay, 100);
-    const data = yield call(queryWiki, query);
-    console.log(data);
-    yield put(receiveArticles(data));
+    const res = yield call(queryWiki, query);
+    yield put(receiveArticles(res));
   } catch (err) {
-    throw err;
+    console.error(err);
   }
 }
 
@@ -20,4 +18,6 @@ function* fetchArticles() {
   yield takeLatest(types.REQUEST_ARTICLES, articlesWorker);
 }
 
-export default fetchArticles;
+export default function* rootSaga() {
+  yield all([fetchArticles()]);
+}
