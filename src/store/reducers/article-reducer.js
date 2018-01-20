@@ -1,8 +1,6 @@
 import { fromJS } from 'immutable';
-import { normalize } from 'normalizr';
 
 import types from '../actions/constants';
-import schema from '../data/schema';
 
 const initialState = fromJS({
   searches: [],

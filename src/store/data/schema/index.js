@@ -1,13 +1,24 @@
 import { schema } from 'normalizr';
 
-const titles = new schema.Entity('titles');
-const extracts = new schema.Entity('extracts');
-const thumbnails = new schema.Entity('thumbnails');
+// From each page, grabbing the route
 
-const article = new schema.Entity('articles', {
-  titles,
-  extracts,
-  thumbnails
+// title
+const titleSchema = new schema.Entity('title', {
+  idAttribute: 'pageid'
+});
+// extract
+const extractSchema = new schema.Entity('extract', {
+  idAttribute: 'pageid'
+});
+// thumbnail.source
+const thumbnailSchema = new schema.Entity('thumbnail', {
+  idAttribute: 'pageid'
+});
+
+const article = new schema.Object('article', {
+  title: titleSchema,
+  extract: extractSchema,
+  thumbnail: thumbnailSchema
 });
 
 export default article;
