@@ -1,7 +1,8 @@
 import createSelector from 'reselect';
 
-const getSearches = (state) => {
-  state.get('searches');
-};
+export const getSearches = state => state.getIn(['articleReducer', 'searches']);
 
-export default getSearches;
+export const getCurrentSearch = (state) => {
+  const latest = state.searches.last() || null;
+  state.getIn(['searches', latest]);
+};

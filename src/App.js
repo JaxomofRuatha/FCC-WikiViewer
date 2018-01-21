@@ -8,14 +8,13 @@ import {
   requestArticles,
   receiveArticles
 } from './store/actions/ArticleActions';
-import getSearches from './store/selectors';
-import queryWiki from './store/data/ajax';
+import { getSearches } from './store/selectors';
 
 const App = () => <div className="app-root" />;
 
 // Adds state as a prop to avoid having components directly reference store.
-const mapStateToProps = state => ({
-  searches: getSearches(state.articleReducer)
+const mapStateToProps = (state, ownProps) => ({
+  searches: getSearches(state)
 });
 
 // Adds action creators as props to avoid having components directly reference store.

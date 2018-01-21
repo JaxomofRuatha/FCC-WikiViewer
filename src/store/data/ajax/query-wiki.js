@@ -10,15 +10,14 @@ function transformResults(res, query) {
   Object.keys(res).forEach((key) => {
     const page = res[key];
     articles.push({
-      id: key,
+      id: page.pageid,
       title: page.title,
       extract: page.extract,
       thumbnail: page.thumbnail
     });
   });
   return fromJS({
-    query,
-    articles
+    [query]: normalize(articles, schema)
   });
 }
 
