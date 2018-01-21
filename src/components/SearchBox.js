@@ -1,10 +1,18 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form/immutable';
 
-const SearchBox = ({ onSearch }) => (
-  <input
-    className="search-box"
-    type="text"
-    placeholder="Consult Wikipedia's knowledge..."
-    onChange={onSearch}
-  />
+const SearchBox = ({ handleSubmit, submitting }) => (
+  <form className="search-box" onSubmit={handleSubmit}>
+    <Field
+      name="searchInput"
+      component="input"
+      type="text"
+      placeholder="Consult Wikipedia's knowledge..."
+    />
+    <button type="submit" disabled={submitting}>
+      Submit
+    </button>
+  </form>
 );
+
+export default reduxForm({ form: 'search' })(SearchBox);

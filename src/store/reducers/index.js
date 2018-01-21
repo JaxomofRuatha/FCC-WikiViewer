@@ -1,7 +1,13 @@
 import { combineReducers } from 'redux-immutable';
-import { routerReducer } from 'react-router-redux';
+import { reducer as form } from 'redux-form/immutable';
+
 import articleReducer from './article-reducer';
+import { routerReducer } from './router-reducer';
 
-const reducers = combineReducers({ articleReducer, router: routerReducer });
+const rootReducer = combineReducers({
+  articleReducer,
+  router: routerReducer,
+  form
+});
 
-export default reducers;
+export default rootReducer;

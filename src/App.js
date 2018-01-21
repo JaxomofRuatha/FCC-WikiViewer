@@ -4,17 +4,23 @@ import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import SearchBox from './components/SearchBox';
+
 import {
   requestArticles,
   receiveArticles
 } from './store/actions/ArticleActions';
-import { getSearches } from './store/selectors';
+import { getCurrentSearch } from './store/selectors';
 
-const App = () => <div className="app-root" />;
+const App = ({ requestArticles, currentSearch }) => (
+  <div className="app-root">
+    <SearchBox onSubmit={() => requestArticles(currentSearch)} />
+  </div>
+);
 
 // Adds state as a prop to avoid having components directly reference store.
 const mapStateToProps = (state, ownProps) => ({
-  searches: getSearches(state)
+  currentSearch: getCurrentSearch(state, ownProps)
 });
 
 // Adds action creators as props to avoid having components directly reference store.
