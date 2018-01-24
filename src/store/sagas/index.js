@@ -3,7 +3,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 
 import types from '../actions/constants';
 import queryWiki from '../data/ajax';
-import { receiveArticles } from '../actions/ArticleActions';
+import { receiveArticles, errorArticles } from '../actions/article-actions';
 
 function* articlesWorker({ query }) {
   try {
@@ -11,7 +11,7 @@ function* articlesWorker({ query }) {
     const res = yield call(queryWiki, query);
     yield put(receiveArticles(res));
   } catch (err) {
-    console.error(err);
+    yield put(errorArticles(err));
   }
 }
 

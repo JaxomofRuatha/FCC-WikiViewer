@@ -1,25 +1,28 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import SearchBox from './components/SearchBox';
+import ArticleEntry from './components/ArticleEntry';
 
 import {
   requestArticles,
   receiveArticles
-} from './store/actions/ArticleActions';
-import { getCurrentSearch } from './store/selectors';
+} from './store/actions/article-actions';
+import { getCurrentQuery, getCurrentSearch } from './store/selectors';
 
-const App = ({ requestArticles, currentSearch }) => (
+const App = props => (
   <div className="app-root">
-    <SearchBox onSubmit={() => requestArticles(currentSearch)} />
+    <SearchBox
+      onSubmit={values => props.requestArticles(values.get('searchInput'))}
+    />
   </div>
 );
 
 // Adds state as a prop to avoid having components directly reference store.
 const mapStateToProps = (state, ownProps) => ({
+  currentQuery: getCurrentQuery(state, ownProps),
   currentSearch: getCurrentSearch(state, ownProps)
 });
 

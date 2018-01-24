@@ -48,26 +48,4 @@ function apiSkeleton(url, options) {
   });
 }
 
-/* async function apiSkeleton(url, options, onRequestSuccess, onRequestFail) {
-  if (!url) onRequestFail(new Error('Request url is a required argument'));
-  if (!options) {
-    onRequestFail(new Error('Request options is a required argument'));
-  }
-  const reqOptions = {
-    mode: 'cors',
-    ...options
-  };
-  const result = await timedRequest(REQUEST_TIMEOUT_MS, fetch(url, reqOptions))
-    .then(_checkStatus)
-    .then((res) => {
-      onRequestSuccess(res);
-    })
-    .catch((err) => {
-      onRequestFail(err);
-    });
-
-  console.log('In API skeleton', result);
-  return result;
-} */
-
 export default apiSkeleton;

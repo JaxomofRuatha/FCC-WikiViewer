@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import App from '../src/App';
+import App from '../App';
 
 describe('Renders App component correctly', () => {
   it('App renders test text', () => {

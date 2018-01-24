@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 
-const SearchBox = ({ handleSubmit, submitting }) => (
+const SearchBox = ({ requestArticles, handleSubmit, submitting }) => (
   <form className="search-box" onSubmit={handleSubmit}>
     <Field
       name="searchInput"

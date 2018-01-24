@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ArticleItem from '../src/components/ArticleItem';
+import ArticleItem from '../components/ArticleEntry';
 
 describe('Correctly renders an ArticleItem component', () => {
   it('ArticleItem renders without crashing', () => {
