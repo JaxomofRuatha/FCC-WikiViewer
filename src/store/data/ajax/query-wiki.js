@@ -17,9 +17,7 @@ export function transformResults(res, query) {
       thumbnail: page.thumbnail
     });
   });
-  return fromJS({
-    [query]: normalize(articles, schema)
-  });
+  return fromJS({ [query]: normalize(articles, schema) });
 }
 
 async function queryWiki(query) {

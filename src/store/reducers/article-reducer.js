@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import types from '../actions/constants';
 
 const initialState = fromJS({
-  searches: [],
+  searches: {},
   fetching: false
 });
 
@@ -14,9 +14,11 @@ const articleReducer = (state = initialState, action) => {
     }
     case types.RECEIVE_ARTICLES: {
       const data = action.res;
+      const query = data.keySeq().first();
+
       return state.withMutations((store) => {
         store.set('fetching', false);
-        store.updateIn(['searches'], searches => searches.push(data));
+        store.setIn(['searches', query], data.get(query));
       });
     }
     default:

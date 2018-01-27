@@ -17,6 +17,22 @@ const App = props => (
     <SearchBox
       onSubmit={values => props.requestArticles(values.get('searchInput'))}
     />
+    <div className="article-results">
+      {props.currentSearch &&
+        props.currentSearch.forEach((article, i) => {
+          const curData = article.get(i);
+
+          return (
+            <ArticleEntry
+              key={i}
+              url={curData.get('url')}
+              title={curData.get('title')}
+              extract={curData.get('extract')}
+              thumbnail={curData.getIn(['thumbnail', 'source'])}
+            />
+          );
+        })}
+    </div>
   </div>
 );
 
