@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import SearchBox from './components/SearchBox';
-import ArticleEntry from './components/ArticleEntry';
+import SearchResults from './components/SearchResults';
 
 import {
   requestArticles,
@@ -17,22 +17,7 @@ const App = props => (
     <SearchBox
       onSubmit={values => props.requestArticles(values.get('searchInput'))}
     />
-    <div className="article-results">
-      {props.currentSearch &&
-        props.currentSearch.forEach((article, i) => {
-          const curData = article.get(i);
-
-          return (
-            <ArticleEntry
-              key={i}
-              url={curData.get('url')}
-              title={curData.get('title')}
-              extract={curData.get('extract')}
-              thumbnail={curData.getIn(['thumbnail', 'source'])}
-            />
-          );
-        })}
-    </div>
+    <SearchResults currentSearch={props.currentSearch} />
   </div>
 );
 
@@ -54,8 +39,8 @@ const mapDispatchToProps = dispatch =>
 
 const enhance = compose(
   lifecycle({
-    componentDidMount() {
-      console.log('React component mounted!');
+    componentWillMount() {
+      document.body.style.background = '#484538';
     }
   }),
   connect(mapStateToProps, mapDispatchToProps)

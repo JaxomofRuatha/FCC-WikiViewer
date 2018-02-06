@@ -14,14 +14,15 @@ export function transformResults(res, query) {
       url: page.fullurl,
       title: page.title,
       extract: page.extract,
-      thumbnail: page.thumbnail
+      thumbnail: page.original,
+      caption: page.pageimage
     });
   });
   return fromJS({ [query]: normalize(articles, schema) });
 }
 
 async function queryWiki(query) {
-  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=info%7Cextracts%7Cpageimages&explaintext=1&generator=search&inprop=url&exsentences=3&exlimit=20&exintro=1&piprop=thumbnail%7Cname&gsrsearch=${query}&gsrnamespace=*&gsrlimit=10`;
+  const url = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=info%7Cextracts%7Cpageimages&explaintext=1&generator=search&inprop=url&exsentences=3&exlimit=20&exintro=1&piprop=original%7Cname&gsrsearch=${query}&gsrnamespace=*&gsrlimit=10`;
 
   const apiOpts = {
     method: 'GET'

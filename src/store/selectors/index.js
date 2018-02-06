@@ -16,10 +16,7 @@ export const getCurrentQuery = createImmutableSelector(
 
 export const getCurrentSearch = createImmutableSelector(
   [getSearches, getSearchValue],
-  (searches, value) => {
-    console.log(searches);
-    return value === undefined
-      ? null
-      : searches.getIn([value, 'entities', 'articles']);
-  }
+  (searches, value) => (value === undefined
+    ? null
+    : searches.getIn([value, 'entities', 'articles']))
 );
