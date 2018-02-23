@@ -32,18 +32,18 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       requestArticles,
-      receiveArticles
+      receiveArticles // Don't think that I need this actually
     },
     dispatch
   );
 
 const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentWillMount() {
       document.body.style.background = '#484538';
     }
-  }),
-  connect(mapStateToProps, mapDispatchToProps)
+  })
 );
 
 export default enhance(App);

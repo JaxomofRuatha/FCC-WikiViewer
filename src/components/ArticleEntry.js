@@ -47,7 +47,9 @@ const ArticleStyled = styled(ArticleEntry)`
     color: #cad49d;
   }
   img {
-    width: 30%;
+    max-width: 30%;
+    max-height: 100%;
+    width: auto;
     height: auto;
   }
 `;
