@@ -8,14 +8,11 @@ const lightBrown = color('#484538')
   .hex();
 
 const SearchBox = ({
-  requestArticles,
-  handleSubmit,
-  submitting,
-  className
+  requestArticles, handleSubmit, submitting, className
 }) => (
   <div className={`search-box ${className}`}>
     <header className="search-box__title">
-      <img src="assets/Wikipedia-logo-v2.svg" alt="The logo of Wikipedia" />
+      <img src="images/Wikipedia-logo-v2.svg" alt="The logo of Wikipedia" />
       <h1>The WikiViewer</h1>
     </header>
     <form className="search-box__form" onSubmit={handleSubmit}>
@@ -26,18 +23,11 @@ const SearchBox = ({
         placeholder="Consult Wikipedia's knowledge..."
         required
       />
-      <button
-        className="search-box__button"
-        type="submit"
-        disabled={submitting}
-      >
+      <button className="search-box__button" type="submit" disabled={submitting}>
         GO
       </button>
     </form>
-    <a
-      href="https://en.wikipedia.org/wiki/Special:Random"
-      className="search-box__random"
-    >
+    <a href="https://en.wikipedia.org/wiki/Special:Random" className="search-box__random">
       ...or discover something new!
     </a>
   </div>
@@ -76,7 +66,7 @@ const SearchStyled = styled(SearchBox)`
   input {
     background: ${lightBrown};
     border: none;
-    padding: 1em;
+    padding: 1rem;
     color: #c0d8e0;
     font-weight: bold;
     width: 80%;
@@ -98,6 +88,7 @@ const SearchStyled = styled(SearchBox)`
     box-shadow: inset 0 0 0 3px #56a3a6, 0 0 0 3px ${lightBrown};
     color: #56a3a6;
     margin-left: -1rem;
+    cursor: pointer;
   }
 `;
 
